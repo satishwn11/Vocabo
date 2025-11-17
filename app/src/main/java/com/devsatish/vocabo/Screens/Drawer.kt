@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.View
+package com.devsatish.vocabo.Screens
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column

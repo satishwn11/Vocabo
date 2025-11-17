@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.View
+package com.devsatish.vocabo.Screens
 
 import android.content.Context
 import android.widget.Toast

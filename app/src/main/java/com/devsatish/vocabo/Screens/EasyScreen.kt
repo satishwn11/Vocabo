@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.View
+package com.devsatish.vocabo.Screens
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -37,10 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.devsatish.vocabo.ViewModel.EasyViewModel
-import com.devsatish.vocabo.ViewModel.MediumViewModel
 
 @Composable
-fun MediumScreen(viewModel: MediumViewModel = viewModel()) {
+fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
     val currentWord by viewModel.currentWord.observeAsState("")
     val result by viewModel.result.observeAsState()
     val showHint by viewModel.showHintButton.observeAsState(false)
@@ -95,17 +94,17 @@ fun MediumScreen(viewModel: MediumViewModel = viewModel()) {
             ),
             keyboardActions = KeyboardActions(
                 onDone = {
-                  if (userInput == "h") {
-                      viewModel.wordHinit()
-                  } else {
-                      if (userInput.isNotEmpty()) {
-                          viewModel.checkAnswer(userInput)
-                          Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                      } else {
-                          Toast.makeText(context,"Write something",
-                              Toast.LENGTH_SHORT).show()
-                      }
-                  }
+                    if (userInput == "h") {
+                        viewModel.wordHinit()
+                    } else {
+                        if (userInput.isNotEmpty()) {
+                            viewModel.checkAnswer(userInput)
+                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context,"Write something",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             )
         )
@@ -133,17 +132,17 @@ fun MediumScreen(viewModel: MediumViewModel = viewModel()) {
 
             Button(
                 onClick = {
-                    if (userInput == "h") {
-                        viewModel.wordHinit()
-                    } else {
-                        if (userInput.isNotEmpty()) {
-                            viewModel.checkAnswer(userInput)
-                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(context,"Write something",
-                                Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                   if(userInput == "h") {
+                       viewModel.wordHinit()
+                   } else {
+                       if(userInput.isNotEmpty()) {
+                           viewModel.checkAnswer(userInput)
+                           Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                       } else {
+                           Toast.makeText(context,"Write something",
+                               Toast.LENGTH_SHORT).show()
+                       }
+                   }
                 },
                 modifier = Modifier.weight(1f)
                     .height(48.dp)

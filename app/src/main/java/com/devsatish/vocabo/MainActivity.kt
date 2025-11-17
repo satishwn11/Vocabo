@@ -14,16 +14,21 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
-import com.devsatish.vocabo.View.Drawer
-import com.devsatish.vocabo.View.EasyActivity
-import com.devsatish.vocabo.View.HardScreen
-import com.devsatish.vocabo.View.LevelSelect
-import com.devsatish.vocabo.View.MediumScreen
-import com.devsatish.vocabo.View.NoteScreen
-import com.devsatish.vocabo.View.TimerScreen
-import com.devsatish.vocabo.View.WriteScreen
+import com.devsatish.vocabo.Screens.Drawer
+import com.devsatish.vocabo.Screens.EasyActivity
+import com.devsatish.vocabo.Screens.FullNewsScreen
+import com.devsatish.vocabo.Screens.HardScreen
+import com.devsatish.vocabo.Screens.LevelSelect
+import com.devsatish.vocabo.Screens.MediumScreen
+import com.devsatish.vocabo.Screens.NoteScreen
+import com.devsatish.vocabo.Screens.ReadingScreen
+import com.devsatish.vocabo.Screens.TimerScreen
+import com.devsatish.vocabo.Screens.WriteScreen
 import com.devsatish.vocabo.ViewModel.TimerViewModel
 import com.devsatish.vocabo.ViewModel.TimerViewModelFactory
+import android.util.Base64
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +81,31 @@ class MainActivity : ComponentActivity() {
                 composable("TimerScreen") { TimerScreen(elapsedTime, sessions, grouped) }
                 composable("NoteScreen") { NoteScreen(navController) }
                 composable("WriteScreen") { WriteScreen(navController) }
+
+                composable("reading") {
+                    ReadingScreen(
+                        apiKey = "31ecf46881364f0ab466b3bf202d9f88",
+                        navController = navController
+                    )
+                }
+
+                composable(
+                    route = "details/{url}",
+                    arguments = listOf(
+                        navArgument("url") { type = NavType.StringType }
+                    )
+                ) { backStackEntry ->
+
+                    val encoded = backStackEntry.arguments?.getString("url") ?: ""
+
+                    val url = String(
+                        Base64.decode(encoded, Base64.URL_SAFE or Base64.NO_WRAP)
+                    )
+
+                    FullNewsScreen(url)
+                }
+
+
             }
         }
     }
