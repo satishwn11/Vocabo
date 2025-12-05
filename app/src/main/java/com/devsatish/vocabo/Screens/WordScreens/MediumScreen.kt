@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Screens
+package com.devsatish.vocabo.Screens.WordScreens
 
 import android.widget.Toast
 import androidx.compose.foundation.background

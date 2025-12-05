@@ -3,7 +3,7 @@ package com.devsatish.vocabo.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.devsatish.vocabo.Repository.MediumRepository
+import com.devsatish.vocabo.Model.WordMeanings.MediumRepository
 
 class MediumViewModel : ViewModel() {
     private val repository = MediumRepository()

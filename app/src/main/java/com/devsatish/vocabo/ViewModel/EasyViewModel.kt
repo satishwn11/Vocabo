@@ -3,7 +3,7 @@ package com.devsatish.vocabo.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.devsatish.vocabo.Repository.Repository
+import com.devsatish.vocabo.Model.WordMeanings.Repository
 
 class EasyViewModel : ViewModel() {
 

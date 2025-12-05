@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Repository
+package com.devsatish.vocabo.Model
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.devsatish.vocabo.Repository.NoteDatabase
-import com.devsatish.vocabo.Repository.Notes
+import com.devsatish.vocabo.Model.Notes.NoteDatabase
+import com.devsatish.vocabo.Model.Notes.Notes
 import kotlinx.coroutines.launch
 
 class NoteViewModel(application: Application): AndroidViewModel(application) {
@@ -33,4 +33,10 @@ class NoteViewModel(application: Application): AndroidViewModel(application) {
             dao.addnotes(note)
         }
     }
+    fun deletenote(notes: Notes) {
+        viewModelScope.launch {
+            dao.deletenotes(notes)
+        }
+    }
+
 }

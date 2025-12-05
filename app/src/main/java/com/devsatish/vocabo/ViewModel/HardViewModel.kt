@@ -3,7 +3,7 @@ package com.devsatish.vocabo.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.devsatish.vocabo.Repository.HardRepository
+import com.devsatish.vocabo.Model.WordMeanings.HardRepository
 
 class HardViewModel : ViewModel() {
     private val repository = HardRepository()

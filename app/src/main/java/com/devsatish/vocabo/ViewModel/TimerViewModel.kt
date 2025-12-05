@@ -3,8 +3,8 @@ package com.devsatish.vocabo.ViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.devsatish.vocabo.Repository.SessionDao
-import com.devsatish.vocabo.Repository.SessionEntity
+import com.devsatish.vocabo.Model.SessionDao
+import com.devsatish.vocabo.Model.SessionEntity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow

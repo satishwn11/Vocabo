@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Screens
+package com.devsatish.vocabo.Screens.NoteScreen
 
 import android.content.Context
 import android.widget.Toast

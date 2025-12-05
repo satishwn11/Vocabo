@@ -1,5 +1,6 @@
 package com.devsatish.vocabo.Screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devsatish.vocabo.Repository.SessionEntity
+import com.devsatish.vocabo.Model.SessionEntity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,92 +39,101 @@ fun TimerScreen(
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
 
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
+        Spacer(Modifier.height(20.dp))
+
+        // ⏱ Timer Box
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
-        ) {
-            Spacer(Modifier.height(14.dp))
-            Box(
-                modifier = Modifier
-                    .width(220.dp)
-                    .height(90.dp)
-                    .shadow(elevation = 3.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("$minutes : $seconds",
-                    fontSize = 60.sp,
-                    fontWeight = FontWeight.Bold
+                .width(250.dp)
+                .height(110.dp)
+                .shadow(
+                    elevation = 6.dp,
+                    shape = RoundedCornerShape(20.dp)
                 )
-            }
-
-            Spacer(Modifier.height(14.dp))
-
-            Text("Past Records",
-                fontSize = 50.sp,
-                fontWeight = FontWeight.Black,
-                color = Color.Gray
+                .background(Color(0xFFF4F4F4), RoundedCornerShape(20.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                "$minutes : $seconds",
+                fontSize = 60.sp,
+                fontWeight = FontWeight.ExtraBold
             )
+        }
 
-            Spacer(Modifier.height(6.dp))
+        Spacer(Modifier.height(20.dp))
 
-            LazyColumn {
-                items(grouped.entries.toList()) { (date, totalDuration) ->
-                    val totalSeconds = totalDuration / 1000
-                    val minutes = totalSeconds / 60
-                    val seconds = totalSeconds % 60
+        // Title
+        Text(
+            "Past Records",
+            fontSize = 38.sp,
+            fontWeight = FontWeight.Black,
+            color = Color.Gray
+        )
 
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 6.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = Color(0xFF3E3E3E)   // Grey background
-                        ),
-                        shape = RoundedCornerShape(10.dp)
+        Spacer(Modifier.height(10.dp))
+
+        // List
+        LazyColumn {
+            items(grouped.entries.toList()) { (date, totalDuration) ->
+                val totalSeconds = totalDuration / 1000
+                val minutes = totalSeconds / 60
+                val seconds = totalSeconds % 60
+
+                // 🟦 New Card Style
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFFDDEEFF)  // Light Blue
+                    ),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(6.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .padding(14.dp)
-                        ) {
-                            Row {
-                                Text(
-                                    text = "TIME SPENT - ",
-                                    fontSize = 18.sp,
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Black
-                                )
-                                Text(
-                                    text = "$minutes min $seconds sec",
-                                    fontSize = 24.sp,
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Black
-                                )
-                            }
+                        Row {
+                            Text(
+                                text = "TIME SPENT - ",
+                                fontSize = 18.sp,
+                                color = Color(0xFF0B2545),
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "$minutes min $seconds sec",
+                                fontSize = 24.sp,
+                                color = Color(0xFF0B2545),
+                                fontWeight = FontWeight.Black
+                            )
+                        }
 
-                            Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
 
-                            Row {
-                                Text(
-                                    text = "DATE  - ",
-                                    fontSize = 18.sp,
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Black
-                                )
-                                Text(
-                                    text = date,
-                                    fontSize = 24.sp,
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Black
-                                )
-                            }
+                        Row {
+                            Text(
+                                text = "DATE - ",
+                                fontSize = 18.sp,
+                                color = Color(0xFF0B2545),
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = date,
+                                fontSize = 24.sp,
+                                color = Color(0xFF0B2545),
+                                fontWeight = FontWeight.Black
+                            )
                         }
                     }
                 }
-
-
+            }
         }
     }
 }

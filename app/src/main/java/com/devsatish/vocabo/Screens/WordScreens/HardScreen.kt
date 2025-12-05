@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Screens
+package com.devsatish.vocabo.Screens.WordScreens
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -36,10 +36,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.devsatish.vocabo.ViewModel.EasyViewModel
+import com.devsatish.vocabo.ViewModel.HardViewModel
 
 @Composable
-fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
+fun HardScreen(viewModel: HardViewModel = viewModel()) {
     val currentWord by viewModel.currentWord.observeAsState("")
     val result by viewModel.result.observeAsState()
     val showHint by viewModel.showHintButton.observeAsState(false)
@@ -75,8 +75,8 @@ fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
         ) {
             Text(
                 text = currentWord,
-                fontSize = 36.sp,
-                color = Color.White,
+                fontSize = 36.sp, // thoda bada
+                color = Color.White, // contrast better
                 fontWeight = FontWeight.Bold
             )
         }
@@ -94,17 +94,17 @@ fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
             ),
             keyboardActions = KeyboardActions(
                 onDone = {
-                    if (userInput == "h") {
-                        viewModel.wordHinit()
-                    } else {
-                        if (userInput.isNotEmpty()) {
-                            viewModel.checkAnswer(userInput)
-                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(context,"Write something",
-                                Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                   if (userInput == "h") {
+                       viewModel.wordHinit()
+                   } else {
+                       if (userInput.isNotEmpty()) {
+                           viewModel.checkAnswer(userInput)
+                           Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                       } else {
+                           Toast.makeText(context,"Write something",
+                               Toast.LENGTH_SHORT).show()
+                       }
+                   }
                 }
             )
         )
@@ -127,22 +127,21 @@ fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 2.dp
                 )
-
             ) { Text("Refresh") }
 
             Button(
                 onClick = {
-                   if(userInput == "h") {
-                       viewModel.wordHinit()
-                   } else {
-                       if(userInput.isNotEmpty()) {
-                           viewModel.checkAnswer(userInput)
-                           Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                       } else {
-                           Toast.makeText(context,"Write something",
-                               Toast.LENGTH_SHORT).show()
-                       }
-                   }
+                    if (userInput == "h") {
+                        viewModel.wordHinit()
+                    } else {
+                        if (userInput.isNotEmpty()) {
+                            viewModel.checkAnswer(userInput)
+                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context,"Write something",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 },
                 modifier = Modifier.weight(1f)
                     .height(48.dp)
