@@ -100,22 +100,6 @@ fun TimerScreen(
                     Column(
                         modifier = Modifier.padding(16.dp)
                     ) {
-                        Row {
-                            Text(
-                                text = "TIME SPENT - ",
-                                fontSize = 18.sp,
-                                color = Color(0xFF0B2545),
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = "$minutes min $seconds sec",
-                                fontSize = 24.sp,
-                                color = Color(0xFF0B2545),
-                                fontWeight = FontWeight.Black
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.height(6.dp))
 
                         Row {
                             Text(
@@ -126,6 +110,23 @@ fun TimerScreen(
                             )
                             Text(
                                 text = date,
+                                fontSize = 24.sp,
+                                color = Color(0xFF0B2545),
+                                fontWeight = FontWeight.Black
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(6.dp))
+
+                        Row {
+                            Text(
+                                text = "TIME SPENT - ",
+                                fontSize = 18.sp,
+                                color = Color(0xFF0B2545),
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "$minutes min $seconds sec",
                                 fontSize = 24.sp,
                                 color = Color(0xFF0B2545),
                                 fontWeight = FontWeight.Black

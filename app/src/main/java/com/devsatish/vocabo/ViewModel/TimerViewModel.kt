@@ -57,13 +57,29 @@ class TimerViewModel(private val dao: SessionDao) : ViewModel() {
 
     fun stopAndSave() {
         timerJob?.cancel()
-        totalTime += System.currentTimeMillis() - startTime
-        viewModelScope.launch {
-            dao.insertSession(SessionEntity(duration = (System.currentTimeMillis() - startTime)))
+        val duration = System.currentTimeMillis() - startTime
+        totalTime += duration
+
+        // Minimum duration check: save only if session >= 1 minute (60000 ms)
+        if (duration >= 60000) {
+            viewModelScope.launch {
+                val todaySession = dao.getTodaySession(System.currentTimeMillis())
+
+                if (todaySession != null) {
+                    // Add new duration to existing today's session
+                    val updatedDuration = todaySession.duration + duration
+                    dao.updateSession(todaySession.copy(duration = updatedDuration))
+                } else {
+                    // Insert new session for today
+                    dao.insertSession(SessionEntity(duration = duration))
+                }
+            }
         }
+
         totalTime = 0L
         _elapsedTime.value = 0L
     }
+
 
 }
 
