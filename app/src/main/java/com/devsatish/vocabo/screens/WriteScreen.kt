@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Screens.NoteScreen
+package com.devsatish.vocabo.screens
 
 import android.content.Context
 import android.widget.Toast
@@ -25,8 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.devsatish.vocabo.ViewModel.NoteViewModel
+import com.devsatish.vocabo.viewModel.NoteViewModel
 import androidx.core.content.edit
+import com.devsatish.vocabo.utils.autoCapitalizeSentences
 import kotlinx.coroutines.delay
 
 @Composable
@@ -43,8 +44,6 @@ fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewMod
             putString("savedtext1", note)
         }
     }
-
-    Column {
         Column(Modifier.padding(8.dp)) {
             TextField(
                 value = note,
@@ -79,26 +78,4 @@ fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewMod
                 }
             }) { Text("Save Note") }
         }
-    }
-}
-
-fun autoCapitalizeSentences(text: String): String {
-    if (text.isEmpty()) return text
-
-    val result = StringBuilder(text.length)
-    var capitalizeNext = true
-
-    for (char in text) {
-        if (capitalizeNext && char.isLetter()) {
-            result.append(char.uppercaseChar())
-            capitalizeNext = false
-        } else {
-            result.append(char)
-        }
-
-        if (char == '.' || char == '?' || char == '!') {
-            capitalizeNext = true
-        }
-    }
-    return result.toString()
 }

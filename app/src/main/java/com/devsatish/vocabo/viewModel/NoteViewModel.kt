@@ -1,12 +1,15 @@
-package com.devsatish.vocabo.ViewModel
+package com.devsatish.vocabo.viewModel
 
 import android.app.Application
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.devsatish.vocabo.Model.Notes.NoteDatabase
-import com.devsatish.vocabo.Model.Notes.Notes
+import com.devsatish.vocabo.model.notes.NoteDatabase
+import com.devsatish.vocabo.model.notes.Notes
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class NoteViewModel(application: Application): AndroidViewModel(application) {
 
@@ -33,6 +36,7 @@ class NoteViewModel(application: Application): AndroidViewModel(application) {
             dao.addnotes(note)
         }
     }
+
     fun deletenote(notes: Notes) {
         viewModelScope.launch {
             dao.deletenotes(notes)

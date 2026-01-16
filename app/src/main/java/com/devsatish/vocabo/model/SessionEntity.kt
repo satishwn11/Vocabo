@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Model
+package com.devsatish.vocabo.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,12 +1,12 @@
-package com.devsatish.vocabo.ViewModel
+package com.devsatish.vocabo.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.devsatish.vocabo.Model.WordMeanings.MediumRepository
+import com.devsatish.vocabo.model.wordMeanings.HardRepository
 
-class MediumViewModel : ViewModel() {
-    private val repository = MediumRepository()
+class HardViewModel : ViewModel() {
+    private val repository = HardRepository()
     private val words = repository.getList()
 
     private val _clearInput = MutableLiveData(false)

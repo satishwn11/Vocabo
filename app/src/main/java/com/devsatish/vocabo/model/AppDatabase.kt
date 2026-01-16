@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Model
+package com.devsatish.vocabo.model
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

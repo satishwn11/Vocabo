@@ -1,10 +1,9 @@
-package com.devsatish.vocabo.ViewModel
+package com.devsatish.vocabo.viewModel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.devsatish.vocabo.Model.SessionDao
-import com.devsatish.vocabo.Model.SessionEntity
+import com.devsatish.vocabo.model.SessionDao
+import com.devsatish.vocabo.model.SessionEntity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -50,11 +49,6 @@ class TimerViewModel(private val dao: SessionDao) : ViewModel() {
         }
     }
 
-    fun pauseTimer() {
-        timerJob?.cancel()
-        totalTime += System.currentTimeMillis() - startTime
-    }
-
     fun stopAndSave() {
         timerJob?.cancel()
         val duration = System.currentTimeMillis() - startTime
@@ -80,12 +74,4 @@ class TimerViewModel(private val dao: SessionDao) : ViewModel() {
         _elapsedTime.value = 0L
     }
 
-
-}
-
-@Suppress("UNCHECKED_CAST")
-class TimerViewModelFactory(private val dao: SessionDao) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return TimerViewModel(dao) as T
-    }
 }

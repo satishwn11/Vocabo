@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Screens.WordScreens
+package com.devsatish.vocabo.screens.wordScreens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

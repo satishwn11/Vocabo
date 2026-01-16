@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.Screens
+package com.devsatish.vocabo.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devsatish.vocabo.Model.SessionEntity
+import com.devsatish.vocabo.model.SessionEntity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
