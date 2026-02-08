@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import com.devsatish.vocabo.screens.AboutDeveloper
 import com.devsatish.vocabo.screens.RootScreen
 
 class MainActivity : ComponentActivity() {
@@ -15,12 +16,12 @@ class MainActivity : ComponentActivity() {
 
         installSplashScreen()
 
-        window.statusBarColor = Color(0xFFF9F3F9).toArgb()
+        window.statusBarColor = Color(0xFFFEFAFE).toArgb()
         WindowCompat.getInsetsController(window, window.decorView)
             .isAppearanceLightStatusBars = true
 
         setContent {
-            RootScreen()
+                RootScreen()
         }
     }
 }

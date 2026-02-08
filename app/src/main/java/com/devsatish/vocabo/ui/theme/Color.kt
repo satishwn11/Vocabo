@@ -16,4 +16,5 @@ val softgray = Color(0xFFE0E0E0)
 val myOrange = Color(0xFFC39857)
 val myRed = Color(0xFFAE3F3F)
 val DisplayGreen = Color(0xFF00BF06)
+val LightDarkGreen = Color(0xFF20B73E)
 

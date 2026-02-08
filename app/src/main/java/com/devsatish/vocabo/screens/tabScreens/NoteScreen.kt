@@ -51,7 +51,7 @@ fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewMode
                 }
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.pencil),
+                    painter = painterResource(id = R.drawable.pencil_edit),
                     contentDescription = "New Note",
                     Modifier.size(30.dp),
                     tint = Color.Black
@@ -84,15 +84,16 @@ fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewMode
                             )
                             .shadow(6.dp, shape = RoundedCornerShape(12.dp)),
                         colors = CardDefaults.cardColors(
-                            containerColor = Color(0xFFDCEBFF)
+                            containerColor = Color.White
                         )
                     ) {
 
                         Text(
                             item.text,
                             fontSize = 18.sp,
+                            color = Color.Black,
                             fontFamily = FontFamily.SansSerif,
-                            fontWeight = FontWeight.Medium,
+                            fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(8.dp)
                         )
 
@@ -102,8 +103,8 @@ fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewMode
                                 .padding(10.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = formatDate(item.timestamp))
-                            Text(text = formatTime(item.timestamp))
+                            Text(text = formatDate(item.timestamp), color = Color.Black)
+                            Text(text = formatTime(item.timestamp), color = Color.Black)
                         }
 
                             // ---- DROPDOWN MENU ----
