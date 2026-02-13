@@ -1,5 +1,7 @@
 package com.devsatish.vocabo.screens.tabScreens
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,9 +29,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -37,12 +39,17 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.devsatish.vocabo.R
+import com.devsatish.vocabo.ui.theme.myGreen
 import com.devsatish.vocabo.utils.formatDate
 import com.devsatish.vocabo.utils.formatTime
 import com.devsatish.vocabo.viewModel.NoteViewModel
 
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewModel()) {
+    val robotoLight = FontFamily(Font(R.font.robotolight))
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -63,6 +70,7 @@ fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewMode
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(color = myGreen)
                 .padding(paddingValues)
                 .padding(8.dp)
         ) {
@@ -81,11 +89,10 @@ fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewMode
                                 onLongClick = {
                                     expanded = true
                                 }
-                            )
-                            .shadow(6.dp, shape = RoundedCornerShape(12.dp)),
-                        colors = CardDefaults.cardColors(
-                            containerColor = Color.White
-                        )
+                            ),
+                        shape = RoundedCornerShape(4.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White)
                     ) {
 
                         Text(
@@ -93,7 +100,7 @@ fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewMode
                             fontSize = 18.sp,
                             color = Color.Black,
                             fontFamily = FontFamily.SansSerif,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Medium,
                             modifier = Modifier.padding(8.dp)
                         )
 
@@ -103,8 +110,11 @@ fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewMode
                                 .padding(10.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = formatDate(item.timestamp), color = Color.Black)
-                            Text(text = formatTime(item.timestamp), color = Color.Black)
+                            Text(text = formatDate(item.timestamp),
+                                fontSize = 12.sp, color = Color.Black)
+                            Text(text = formatTime(item.timestamp),
+                                fontSize = 12.sp,
+                                color = Color.Black)
                         }
 
                             // ---- DROPDOWN MENU ----

@@ -29,6 +29,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,12 +39,18 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.devsatish.vocabo.viewModel.NoteViewModel
 import androidx.core.content.edit
+import com.devsatish.vocabo.R
+import com.devsatish.vocabo.ui.theme.myGreen
 import com.devsatish.vocabo.utils.autoCapitalizeSentences
 import com.devsatish.vocabo.utils.wordcounter
 import kotlinx.coroutines.delay
 
 @Composable
 fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewModel()) {
+    val robotoLight = FontFamily(
+        Font(R.font.robotolight)
+    )
+
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
 
@@ -56,6 +65,8 @@ fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewMod
         }
     }
         Column(Modifier.padding(8.dp)) {
+
+            // Text Field
             TextField(
                 value = note,
                 onValueChange = { newText ->
@@ -64,10 +75,11 @@ fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewMod
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(350.dp),
-                shape = RoundedCornerShape(18.dp),
+                shape = RoundedCornerShape(8.dp),
                 textStyle = TextStyle(
                     fontSize = 20.sp,
-                    lineHeight = 28.sp   // 👈 important for long writing
+                    lineHeight = 28.sp,
+                    fontFamily = FontFamily.SansSerif
                 ),
                 placeholder = {
                     Text(
@@ -77,8 +89,8 @@ fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewMod
                     )
                 },
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF6F6F6),
-                    unfocusedContainerColor = Color(0xFFF6F6F6),
+                    focusedContainerColor = Color(0xFFEDEDED),
+                    unfocusedContainerColor = Color(0xFFEDEDED),
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                     cursorColor = Color.Blue
@@ -96,7 +108,7 @@ fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewMod
             ) {
                 Text(
                     text = "Words: $words",
-                    color = Color.Gray
+                    color = Color.Blue
                 )
             }
 
@@ -126,7 +138,7 @@ fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewMod
                     .height(40.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Blue,
+                    containerColor = myGreen,
                     contentColor = Color.White
                 ),
                 elevation = ButtonDefaults.buttonElevation(

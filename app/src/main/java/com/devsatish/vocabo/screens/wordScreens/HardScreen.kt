@@ -75,8 +75,8 @@ fun HardScreen(viewModel: HardViewModel = viewModel()) {
         ) {
             Text(
                 text = currentWord,
-                fontSize = 36.sp, // thoda bada
-                color = Color.White, // contrast better
+                fontSize = 36.sp,
+                color = Color.White,
                 fontWeight = FontWeight.Bold
             )
         }
@@ -153,15 +153,6 @@ fun HardScreen(viewModel: HardViewModel = viewModel()) {
                 )
             ) { Text("Check") }
         }
-
-//        if (showHint) {
-//            Button(
-//                onClick = { viewModel.wordHinit() },
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(top = 8.dp)
-//            ) { Text("Hint") }
-//        }
 
         if(clearInput) {
             userInput = ""
