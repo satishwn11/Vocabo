@@ -132,17 +132,17 @@ fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
 
             Button(
                 onClick = {
-                   if(userInput == "h") {
-                       viewModel.wordHinit()
-                   } else {
-                       if(userInput.isNotEmpty()) {
-                           viewModel.checkAnswer(userInput)
-                           Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                       } else {
-                           Toast.makeText(context,"Write something",
-                               Toast.LENGTH_SHORT).show()
-                       }
-                   }
+                    if(userInput == "h") {
+                        viewModel.wordHinit()
+                    } else {
+                        if(userInput.isNotEmpty()) {
+                            viewModel.checkAnswer(userInput)
+                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context,"Write something",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 },
                 modifier = Modifier.weight(1f)
                     .height(48.dp)
@@ -154,15 +154,6 @@ fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
                 )
             ) { Text("Check") }
         }
-
-//        if (showHint) {
-//            Button(
-//                onClick = { viewModel.wordHinit() },
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(top = 8.dp)
-//            ) { Text("Hint") }
-//        }
 
         if(clearInput) {
             userInput = ""

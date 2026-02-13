@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,82 +31,103 @@ import com.devsatish.vocabo.ui.theme.myRed
 
 @Composable
 fun LevelSelect(navController: NavController) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp),
+            .background(Color(0xFFF5F6FA))
+            .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp)
-                .clip(RoundedCornerShape(12))
-                .height(60.dp)
-                .background(Color(0xFF01B720)),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "Choose your difficulty",
-                fontSize = 28.sp,
-                color = Color.White,
-                fontFamily = FontFamily.SansSerif,
-                fontWeight = FontWeight.SemiBold
+
+        // Header Card
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            elevation = CardDefaults.cardElevation(8.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color(0xFF01B720)
             )
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 24.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Choose your difficulty",
+                    fontSize = 24.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
-        Spacer(modifier = Modifier.height(8.dp))
-        Divider(
-            color = Color.LightGray,
-            thickness = 1.dp,
-            modifier = Modifier.padding(vertical = 8.dp)
-        )
 
+        Spacer(modifier = Modifier.height(40.dp))
 
+        // Easy
         Button(
-            onClick = {
-                navController.navigate("EasyActivity")
-            },
+            onClick = { navController.navigate("EasyActivity") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp),
+                .height(60.dp),
+            shape = RoundedCornerShape(16.dp),
+            elevation = ButtonDefaults.buttonElevation(6.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = myGreen,
                 contentColor = Color.White
             )
-        ) { Text("Easy",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold
-            )}
-        Spacer(modifier = Modifier.height(8.dp))
+        ) {
+            Text(
+                text = "Easy",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Intermediate
         Button(
-            onClick = {
-                navController.navigate("MediumScreen")
-            },
+            onClick = { navController.navigate("MediumScreen") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp),
+                .height(60.dp),
+            shape = RoundedCornerShape(16.dp),
+            elevation = ButtonDefaults.buttonElevation(6.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = myOrange,
                 contentColor = Color.White
             )
-        ) { Text("Intermediate",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold)}
-        Spacer(modifier = Modifier.height(8.dp))
+        ) {
+            Text(
+                text = "Intermediate",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Advanced
         Button(
-            onClick = {
-                navController.navigate("HardScreen")
-            },
+            onClick = { navController.navigate("HardScreen") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp),
+                .height(60.dp),
+            shape = RoundedCornerShape(16.dp),
+            elevation = ButtonDefaults.buttonElevation(6.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = myRed,
                 contentColor = Color.White
             )
-        ) { Text("Advanced",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold)}
-
+        ) {
+            Text(
+                text = "Advanced",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
     }
 }

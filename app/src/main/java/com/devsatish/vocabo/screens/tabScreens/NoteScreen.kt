@@ -31,7 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -47,95 +46,98 @@ import com.devsatish.vocabo.viewModel.NoteViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun NoteScreen(navController: NavController, viewModel: NoteViewModel = viewModel()) {
-    val robotoLight = FontFamily(Font(R.font.robotolight))
+fun NoteScreen(
+    navController: NavController,
+    viewModel: NoteViewModel = viewModel()
+) {
 
     Scaffold(
+        containerColor = Color(0xFFF5F6FA),
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {
-                    navController.navigate("WriteScreen")
-                }
+                onClick = { navController.navigate("WriteScreen") },
+                containerColor = myGreen
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.pencil_edit),
                     contentDescription = "New Note",
-                    Modifier.size(30.dp),
-                    tint = Color.Black
+                    modifier = Modifier.size(24.dp),
+                    tint = Color.White
                 )
             }
         }
-
     ) { paddingValues ->
-        Column(
+
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = myGreen)
                 .padding(paddingValues)
-                .padding(8.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            LazyColumn {
-                items(viewModel.notes) { item ->
 
-                    var expanded by remember { mutableStateOf(false) }
+            items(viewModel.notes) { item ->
 
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .combinedClickable(
-                                onClick = {
-                                    // normal click -> open note or edit (optional)
-                                },
-                                onLongClick = {
-                                    expanded = true
-                                }
-                            ),
-                        shape = RoundedCornerShape(4.dp),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.White)
+                var expanded by remember { mutableStateOf(false) }
+
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .combinedClickable(
+                            onClick = { },
+                            onLongClick = { expanded = true }
+                        ),
+                    shape = RoundedCornerShape(18.dp),
+                    elevation = CardDefaults.cardElevation(8.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.White
+                    )
+                ) {
+
+                    Column(
+                        modifier = Modifier.padding(16.dp)
                     ) {
 
                         Text(
-                            item.text,
+                            text = item.text,
                             fontSize = 18.sp,
-                            color = Color.Black,
-                            fontFamily = FontFamily.SansSerif,
                             fontWeight = FontWeight.Medium,
-                            modifier = Modifier.padding(8.dp)
+                            color = Color.Black
                         )
 
+                        Spacer(modifier = Modifier.height(12.dp))
+
                         Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(10.dp),
+                            modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = formatDate(item.timestamp),
-                                fontSize = 12.sp, color = Color.Black)
-                            Text(text = formatTime(item.timestamp),
-                                fontSize = 12.sp,
-                                color = Color.Black)
+                            Text(
+                                text = formatDate(item.timestamp),
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                            Text(
+                                text = formatTime(item.timestamp),
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
                         }
-
-                            // ---- DROPDOWN MENU ----
-                            DropdownMenu(
-                                expanded = expanded,
-                                onDismissRequest = { expanded = false }
-                            ) {
-                                DropdownMenuItem(
-                                    text = { Text("Delete") },
-                                    onClick = {
-                                        expanded = false
-                                        viewModel.deletenote(item)
-                                    }
-                                )
-                            }
                     }
-                    Spacer(Modifier.height(12.dp))
 
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Delete") },
+                            onClick = {
+                                expanded = false
+                                viewModel.deletenote(item)
+                            }
+                        )
+                    }
                 }
             }
-
         }
     }
 }

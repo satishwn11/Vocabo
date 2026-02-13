@@ -94,17 +94,17 @@ fun HardScreen(viewModel: HardViewModel = viewModel()) {
             ),
             keyboardActions = KeyboardActions(
                 onDone = {
-                   if (userInput == "h") {
-                       viewModel.wordHinit()
-                   } else {
-                       if (userInput.isNotEmpty()) {
-                           viewModel.checkAnswer(userInput)
-                           Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                       } else {
-                           Toast.makeText(context,"Write something",
-                               Toast.LENGTH_SHORT).show()
-                       }
-                   }
+                    if (userInput == "h") {
+                        viewModel.wordHinit()
+                    } else {
+                        if (userInput.isNotEmpty()) {
+                            viewModel.checkAnswer(userInput)
+                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context,"Write something",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             )
         )

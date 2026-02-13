@@ -1,7 +1,6 @@
 package com.devsatish.vocabo.screens
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +18,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,27 +27,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.edit
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.devsatish.vocabo.viewModel.NoteViewModel
-import androidx.core.content.edit
-import com.devsatish.vocabo.R
 import com.devsatish.vocabo.ui.theme.myGreen
 import com.devsatish.vocabo.utils.autoCapitalizeSentences
 import com.devsatish.vocabo.utils.wordcounter
+import com.devsatish.vocabo.viewModel.NoteViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun WriteScreen(navController: NavController, viewModel: NoteViewModel = viewModel()) {
-    val robotoLight = FontFamily(
-        Font(R.font.robotolight)
-    )
 
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current

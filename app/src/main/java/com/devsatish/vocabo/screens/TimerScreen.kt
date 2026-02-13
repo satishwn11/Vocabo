@@ -1,8 +1,8 @@
 package com.devsatish.vocabo.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +16,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -27,84 +26,70 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TimerScreen(
-    grouped: Map<String, Long>
-) {
+fun TimerScreen(grouped: Map<String, Long>) {
+
+    val timeInMillis = System.currentTimeMillis()
+    val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+    val today = formatter.format(timeInMillis)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
+            .background(Color(0xFFF5F6FA))
+            .padding(20.dp)
     ) {
-        // Title
+
         Text(
-            "Records",
-            fontSize = 38.sp,
-            fontWeight = FontWeight.Black,
-            color = Color.Gray
+            text = "Your Records",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
         )
 
-        Spacer(Modifier.height(10.dp))
-        val timeInMillis = System.currentTimeMillis()
-        val formater = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-        val today = formater.format(timeInMillis)
+        Spacer(Modifier.height(20.dp))
 
-        // List
-        LazyColumn {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+
             items(grouped.entries.toList()) { (date, totalDuration) ->
+
                 val totalSeconds = totalDuration / 1000
                 val minutes = totalSeconds / 60
                 val seconds = totalSeconds % 60
 
-                // 🟦 New Card Style
                 Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp),
+                    elevation = CardDefaults.cardElevation(8.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = if(date == today)Color.Yellow
-                    else Color(0xFFDDEEFF) // Light Blue
-                    ),
-                    shape = RoundedCornerShape(16.dp),
-                    elevation = CardDefaults.cardElevation(6.dp)
+                        containerColor =
+                            if (date == today)
+                                Color(0xFFE8F5E9)   // Soft green highlight
+                            else
+                                Color.White
+                    )
                 ) {
+
                     Column(
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier.padding(18.dp)
                     ) {
 
-                        Row {
-                            Text(
-                                text = if (date == today) "TODAY - " else "DATE - ",
-                                fontSize = 18.sp,
-                                color = Color(0xFF0B2545),
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = date,
-                                fontSize = 24.sp,
-                                color = Color(0xFF0B2545),
-                                fontWeight = FontWeight.Black
-                            )
-                        }
+                        Text(
+                            text = if (date == today) "Today" else date,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color(0xFF1B4332)
+                        )
 
-                        Spacer(modifier = Modifier.height(6.dp))
+                        Spacer(Modifier.height(10.dp))
 
-                        Row {
-                            Text(
-                                text = "TIME SPENT - ",
-                                fontSize = 18.sp,
-                                color = Color(0xFF0B2545),
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = "$minutes min $seconds sec",
-                                fontSize = 24.sp,
-                                color = Color(0xFF0B2545),
-                                fontWeight = FontWeight.Black
-                            )
-                        }
+                        Text(
+                            text = "$minutes min $seconds sec",
+                            fontSize = 26.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
                     }
                 }
             }
