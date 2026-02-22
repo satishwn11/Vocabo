@@ -64,96 +64,36 @@ fun MediumScreen(viewModel: MediumViewModel = viewModel()) {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(90.dp)
-                .clip(RoundedCornerShape(3.dp))
-                .background(color = Color(0xFF00BF06)),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = currentWord,
-                fontSize = 36.sp,
-                color = Color.White,
-                fontWeight = FontWeight.Bold
-            )
-        }
+        TextBox(currentWord)
 
-        TextField(
+        AnswerInput(
             value = userInput,
             onValueChange = { userInput = it },
-            placeholder = { Text("Type the meaning") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done
-            ),
-            keyboardActions = KeyboardActions(
-                onDone = {
-                    if (userInput == "h") {
-                        viewModel.wordHinit()
-                    } else {
-                        if (userInput.isNotEmpty()) {
-                            viewModel.checkAnswer(userInput)
-                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(context,"Write something",
-                                Toast.LENGTH_SHORT).show()
-                        }
-                    }
+            onDone = {
+                if (userInput == "h") {
+                    viewModel.wordHinit()
+                } else if (userInput.isNotEmpty()) {
+                    viewModel.checkAnswer(userInput)
+                    Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Write something", Toast.LENGTH_SHORT).show()
                 }
-            )
+            }
         )
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Button(
-                onClick = { viewModel.refreshWord() },
-                modifier = Modifier.weight(1f)
-                    .height(48.dp)
-                    .width(60.dp)
-                    .border(1.dp, color = Color.Black, CircleShape),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFFFFFF),
-                    contentColor = Color.Black
-                ),
-                shape = RoundedCornerShape(25.dp),
-                elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = 2.dp
-                )
-
-            ) { Text("Refresh") }
-
-            Button(
-                onClick = {
-                    if (userInput == "h") {
-                        viewModel.wordHinit()
-                    } else {
-                        if (userInput.isNotEmpty()) {
-                            viewModel.checkAnswer(userInput)
-                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(context,"Write something",
-                                Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                },
-                modifier = Modifier.weight(1f)
-                    .height(48.dp)
-                    .width(60.dp)
-                    .border(1.dp, color = Color.Black, CircleShape),
-                shape = RoundedCornerShape(25.dp),
-                elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = 2.dp
-                )
-            ) { Text("Check") }
-        }
+        ActionButtons(
+            onRefresh = { viewModel.refreshWord() },
+            onCheck = {
+                if (userInput == "h") {
+                    viewModel.wordHinit()
+                } else if (userInput.isNotEmpty()) {
+                    viewModel.checkAnswer(userInput)
+                    Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Write something", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
 
         if(clearInput) {
             userInput = ""
