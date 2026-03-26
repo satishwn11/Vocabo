@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,8 +43,9 @@ fun TimerScreen(grouped: Map<String, Long>) {
         Text(
             text = "Your Records",
             fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = FontFamily.Serif,
+            color = Color(0xFF31BC40)
         )
 
         Spacer(Modifier.height(20.dp))
@@ -60,12 +62,12 @@ fun TimerScreen(grouped: Map<String, Long>) {
 
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(20.dp),
+                    shape = RoundedCornerShape(10.dp),
                     elevation = CardDefaults.cardElevation(8.dp),
                     colors = CardDefaults.cardColors(
                         containerColor =
                             if (date == today)
-                                Color(0xFFE8F5E9)   // Soft green highlight
+                                Color(0xFFB9B172)
                             else
                                 Color.White
                     )
@@ -77,16 +79,16 @@ fun TimerScreen(grouped: Map<String, Long>) {
 
                         Text(
                             text = if (date == today) "Today" else date,
-                            fontSize = 18.sp,
+                            fontSize = 22.sp,
                             fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF1B4332)
+                            color = Color(0xFF0A5207)
                         )
 
-                        Spacer(Modifier.height(10.dp))
+                        Spacer(Modifier.height(8.dp))
 
                         Text(
                             text = "$minutes min $seconds sec",
-                            fontSize = 26.sp,
+                            fontSize = 25.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black
                         )
