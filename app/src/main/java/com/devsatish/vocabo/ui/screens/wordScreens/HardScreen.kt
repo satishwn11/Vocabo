@@ -1,24 +1,10 @@
-package com.devsatish.vocabo.screens.wordScreens
+package com.devsatish.vocabo.ui.screens.wordScreens
 
 import android.widget.Toast
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -28,18 +14,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.devsatish.vocabo.viewModel.EasyViewModel
+import com.devsatish.vocabo.ui.viewModel.HardViewModel
 
 @Composable
-fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
+fun HardScreen(viewModel: HardViewModel = viewModel()) {
     val currentWord by viewModel.currentWord.observeAsState("")
     val result by viewModel.result.observeAsState()
     val showHint by viewModel.showHintButton.observeAsState(false)
@@ -64,9 +45,9 @@ fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        TextBox(currentWord)
+       _root_ide_package_.com.devsatish.vocabo.ui.screens.wordScreens.TextBox(currentWord)
 
-        AnswerInput(
+        _root_ide_package_.com.devsatish.vocabo.ui.screens.wordScreens.AnswerInput(
             value = userInput,
             onValueChange = { userInput = it },
             onDone = {
@@ -81,7 +62,7 @@ fun EasyActivity(viewModel: EasyViewModel = viewModel()) {
             }
         )
 
-        ActionButtons(
+        _root_ide_package_.com.devsatish.vocabo.ui.screens.wordScreens.ActionButtons(
             onRefresh = { viewModel.refreshWord() },
             onCheck = {
                 if (userInput == "h") {

@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.screens
+package com.devsatish.vocabo.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

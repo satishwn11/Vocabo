@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.screens
+package com.devsatish.vocabo.ui.screens
 
 import android.content.Context
 import android.widget.Toast
@@ -37,7 +37,7 @@ import androidx.navigation.NavController
 import com.devsatish.vocabo.ui.theme.myGreen
 import com.devsatish.vocabo.utils.autoCapitalizeSentences
 import com.devsatish.vocabo.utils.wordcounter
-import com.devsatish.vocabo.viewModel.NoteViewModel
+import com.devsatish.vocabo.ui.viewModel.NoteViewModel
 import kotlinx.coroutines.delay
 
 @Composable

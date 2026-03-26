@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.viewModel
+package com.devsatish.vocabo.ui.viewModel
 
 import android.app.Application
 import androidx.compose.runtime.mutableStateListOf

@@ -1,7 +1,6 @@
-package com.devsatish.vocabo.screens.tabScreens
+package com.devsatish.vocabo.ui.screens.tabScreens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,7 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,7 +39,7 @@ import com.devsatish.vocabo.R
 import com.devsatish.vocabo.ui.theme.myGreen
 import com.devsatish.vocabo.utils.formatDate
 import com.devsatish.vocabo.utils.formatTime
-import com.devsatish.vocabo.viewModel.NoteViewModel
+import com.devsatish.vocabo.ui.viewModel.NoteViewModel
 
 
 @OptIn(ExperimentalFoundationApi::class)

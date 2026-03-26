@@ -1,4 +1,4 @@
-package com.devsatish.vocabo.viewModel
+package com.devsatish.vocabo.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
